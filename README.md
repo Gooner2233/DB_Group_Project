@@ -1,6 +1,6 @@
 # DB_Group_Project Group 2
 Dagmawi Workineh Yemesgen, Biraj Dahal, Hrishav Sapkota
-Welcome to our repo for our DBMS group project!
+welcome you to our repo for our DBMS group project!
 
 Navigations:
 **ERD** - picture of our ERD design
