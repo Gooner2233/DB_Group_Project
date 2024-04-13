@@ -19,7 +19,6 @@ task_id_to_adjust_weight, second_task_id_to_adjust_weight, crs_to_adjust_num, ne
 assignment_name_just_qs, crs_num_for_qs = "Homework 3", 101  # Inputs For Q.10
 student_name, crs_to_grade, cat_to_drop = "McArthur", "Calculus II", 'Homework' # Inputs For Q.11,12
 
-
 # Define queries to calculate average, highest, and lowest scores
 q4_queries = [
     """
@@ -91,6 +90,7 @@ WHERE gb.course_num = %s;
 cursor.execute(q7_query, (crs_for_new_task, crs_for_new_task, task_to_add, weight_to_add, crs_for_new_task))
 conn.commit()
 
+
 q8_query = """
 UPDATE GRADING_CATEGORIES
 SET TASK_WEIGHT = 
@@ -106,6 +106,7 @@ cursor.execute(q8_query, (task_id_to_adjust_weight,
                            crs_to_adjust_num, new_weight,
                            second_task_id_to_adjust_weight,
                            crs_to_adjust_num, new_weight,))
+conn.commit()
 
 q9_query = """
 UPDATE GRADING_CATEGORIES
@@ -205,6 +206,7 @@ for task_id, score, weight, task_name in student_scores_all:
 
 calculated_grade_excl_lowest = next((grade for grade, threshold in grading_scale.items() if total_weighted_score_excl_lowest >= threshold), 'F')
 
+
 # Print results
 print("Problem 4. Avg/High/Low for assignment", assignment_name, "in course ", str(crs_num) + ":")
 print("Average Score:", q4_results[0])
@@ -219,9 +221,10 @@ print("\nProblem 6. All raw points for each assignment for students who take", s
 for row in q6_result:
     print("Student:", row[0], "task:", row[1], ", Raw Points:", row[2])
 
+
 print("\nProblem 7 performed (Screenshot can be found in Doc) and task", task_to_add, "added with weight", weight_to_add, "%")
 
-print("\nProblem 8: Task weights for course", crs_to_adjust_num, "have been updated! Check Screenshots in Doc for proof.")
+print("\nProblem 8: Task weights for course", crs_to_adjust_num, " assignments have been updated to be", new_weight, "! Check Screenshots in Doc for proof.")
 
 print("\nProblem 9: 2 points added to everyone's grades for assignment:", assignment_name + ". Check Screenshots in Doc for proof.")
 
@@ -232,7 +235,7 @@ for student in eligible_students:
 
 print("\nProblem 11: calculated grade for student", student_name, " for course", crs_to_grade, " is: ", calculated_grade, "and a numerical final grade of:", str(total_weighted_score) + "%")
 
-print("\nProblem 12: calculated grade for student", student_name, " for course", crs_to_grade, " with lowest score dropped is: ", calculated_grade_excl_lowest, "and a numerical final grade of:", str(total_weighted_score_excl_lowest) + "%")
+print("\nProblem 12: calculated grade for student", student_name, " for course", crs_to_grade, " with lowest score for Homeworks dropped is: ", calculated_grade_excl_lowest, "and a numerical final grade of:", str(total_weighted_score_excl_lowest) + "%")
 
 # Close cursor and connection
 cursor.close()
