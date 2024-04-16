@@ -1,4 +1,4 @@
-# DB_Group_Project Group 2
+# Database Group Project | Group 2
 Dagmawi Workineh Yemesgen, Biraj Dahal, Hrishav Sapkota
 welcome you to our repo for our DBMS group project!
 
